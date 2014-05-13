@@ -16,7 +16,7 @@ def home(request):
 	try:
 		profile = UserProfile.objects.get(user = request.user)
 	except:
-		profile = UserProfile(user = request.user)
+		profile = UserProfile(user = request.user, receive_email = False)
 		profile.save()
 	#profile.update_user_info() # NO UPDATE
 	return render(request, 'account_details.html',{
@@ -41,8 +41,8 @@ def settings(request):
 
 
 			user_profile = UserProfile.objects.get(user=request.user)
-			user_profile.receive_news = cd['receive_news']
-			logger.info(cd['receive_news'])
+			user_profile.receive_email = cd['receive_email']
+			logger.info(cd['receive_email'])
 			user_profile.save()
 		else:
 			logger.info(form.errors)
