@@ -31,7 +31,7 @@
 					</a>
 
 
-					{% url 'categories.views.category_detail category.name as category_url%}
+					{% url 'categories.views.category_detail' category.name as category_url %}
 					<a href="{{ category_url }}" class="content">{{ category.name }}
 						<span class="description">
 							{% for p in category.projects %}
