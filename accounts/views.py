@@ -18,7 +18,7 @@ def home(request):
 	except:
 		profile = UserProfile(user = request.user, receive_email = False)
 		profile.save()
-	#profile.update_user_info() # NO UPDATE
+	profile.update_user_info() # NO UPDATE
 	return render(request, 'account_details.html',{
 		'profile': profile,
 		})

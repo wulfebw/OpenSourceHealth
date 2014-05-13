@@ -6,7 +6,9 @@ from django.contrib.auth.decorators import login_required
 from accounts.models import UserProfile
 from projects.forms	import ModeratedProjectForm
 from django.core.urlresolvers import reverse
+
 import datetime
+import requests
 
 import logging
 logger = logging.getLogger('log')
