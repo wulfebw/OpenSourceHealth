@@ -50,7 +50,15 @@ def projects_by_name(request):
 
 @login_required
 def edit_project(request, project_name):
-	is_existing_project = project_name != "new"
+	try:
+		existing_project = Project.objects.get(name = project_name)
+	except:
+		existing_project = None
+
+	if existing_project is None:
+		is_existing_project = False
+	else:
+		is_existing_project = True
 
 	if request.POST:
 		form = ModeratedProjectForm(request.POST)
