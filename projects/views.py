@@ -64,13 +64,16 @@ def edit_project(request, project_name):
 		form = ModeratedProjectForm(request.POST)
 		if form.is_valid():
 			cd = form.cleaned_data
-			r = requests.get('https://api.github.com/repos/{0}'.format(github_repo = cd['github_repo']))
-			if not r.ok:
-				errors.append("invalid github repo")
-				return render(request, 'edit_project.html', {
-					'form': form,
-					'errors': errors,
-					})
+			logger.info('cd: {0}\n'.format(cd))
+			logger.info(cd['github_repo'])
+
+			# r = requests.get('https://api.github.com/repos/{0}'.format(github_repo = cd['github_repo']))
+			# if not r.ok:
+			# 	errors.append("invalid github repo")
+			# 	return render(request, 'edit_project.html', {
+			# 		'form': form,
+			# 		'errors': errors,
+			# 		})
 			new_mod_project = ModeratedProject(
 				name = cd['name'],
 				github_repo = cd['github_repo'],
