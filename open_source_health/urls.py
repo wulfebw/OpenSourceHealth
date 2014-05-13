@@ -10,6 +10,6 @@ urlpatterns = patterns('',
     url(r'^categories/', include('categories.urls')),
     url(r'^projects/', include('projects.urls')),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^', 'categories.views.categories_by_group')
+    url(r'^', 'categories.views.categories_by_group'),
     url('', include('social.apps.django_app.urls', namespace='social'))
 )
