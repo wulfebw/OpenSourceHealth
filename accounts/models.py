@@ -13,7 +13,7 @@ class UserProfile (models.Model):
 	favorite_projects = models.ManyToManyField(Project, blank = True, null = True)
 	github_repos = models.IntegerField(blank = True, null = True)
 	github_gists = models.IntegerField(blank = True, null = True)
-	receive_email = models.BooleanField()
+	receive_email = models.BooleanField(blank = True, null = True)
 
 	def __unicode__(self):
 		return self.user.username
