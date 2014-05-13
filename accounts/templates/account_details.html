@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}	
+
+<aside>
+	{% url 'accounts.views.settings' as settings_url %}
+	<a href="{{ settings_url }}"> 
+		<span class="glyphicon glyphicon-cog"></span>
+		Account Settings 
+	</a>
+</aside>
+
+<div class="container">
+
+	<div class="account-section">
+
+
+			<a href="https://github.com/{{ user.username }}">
+				<h3>{{ user.username }}</h3>
+			</a>
+
+
+		<div class="attribute-section account">
+
+
+			<div class="attribute">
+				Public Github Repos: 
+				<a href="https://github.com/{{ user.username }}">
+					{{ profile.github_repos }}
+				</a>
+			</div>
+
+
+			<div class="attribute">
+				Public Gists: 
+				<a href="https://gist.github.com/{{ user.username }}">
+					{{ profile.github_gists }}
+				</a>
+			</div>
+
+
+		</div>
+	</div>
+
+
+
+	<div>
+
+
+		<h3 class="no-border">
+			<span class="glyphicon glyphicon-heart"></span> 
+			{{ user.first_name }}'s 
+			Favorite Projects 
+			({{ profile.favorite_projects.all|length }})
+		</h3>
+
+
+
+		{% for project in profile.favorite_projects.all %}
+
+			{% url 'projects.views.project_detail' project.name as project_url %}
+				<div>
+					<a class="content favorite-projects" href="{{ project_url }}">
+						{{ project.name }}
+					</a>
+				</div>
+
+		{% endfor %}
+
+
+	</div>
+</div>
+{% endblock content %}

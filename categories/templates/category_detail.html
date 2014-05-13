@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+
+
+	<h1>{{ category.name }}</h1>
+
+
+
+	<ul class="list-unstyled">
+		{% for project in projects %}
+			<li class="container project">
+				{% url 'projects.views.project_detail' project.name as project_url %}
+
+
+					<h3>
+						<a href="{{ project_url }}">
+							{{ project.name }}
+						</a>
+
+						{% if project not in favorites %}
+							<a class="like" href="{% url 'projects.views.project_detail' project.name 1 %}">
+								<span class="glyphicon glyphicon-heart"></span> 
+								Like this project
+							</a>
+						{% else %}
+							<div class="like">
+								<span class="glyphicon glyphicon-heart"></span> 
+								You like this project!
+							</div>
+						{% endif %}
+					</h3>
+
+
+					<div class="project-description">
+						{{ project.description }}
+					</div>
+
+
+					<div class="attribute-section">
+
+							<div class="attribute">
+								<a href="{{ project.website_url }}">
+									<span class="glyphicon glyphicon-tower"></span> 
+									Website
+								</a>
+							</div>
+
+							<div class="attribute">
+								<a href="{{ project.documentation_url }}">
+									<span class="glyphicon glyphicon-book"></span> Documentation
+								</a>
+							</div>
+
+							<div class="attribute">
+								<a href="{{ project.bug_tracker_url }}">
+									<span class="glyphicon glyphicon-thumbs-down"></span> Bug Tracker
+								</a>
+							</div>
+
+							<div class="attribute">
+								<a href="{{ project.mailing_list_url }}">
+									<span class="glyphicon glyphicon-envelope"></span> Mailing List
+								</a>
+							</div>
+
+					</div>
+
+
+
+					<div class="attribute-section github">
+
+						<h5>
+							Github 
+							<a href="https://github.com/{{ project.github_repo }}">
+								{{ project.github_repo }}
+							</a>
+						</h5>
+
+						<div>
+							Watchers: {{ project.github_watchers }}
+						</div>
+
+						<div>
+							Forks: {{ project.github_forks }}
+						</div>
+
+						<div>
+							Last Commit: {{ project.last_commit_date }}
+						</div>
+
+						<div>
+							First Commit: {{ project.first_commit_date }}
+						</div>
+
+					</div>
+			</li>
+		{% endfor %}
+		</ul>
+	</div>
+{% endblock content%}

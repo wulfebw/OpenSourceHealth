@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+
+	<form action="" method="post" class="project-form">{% csrf_token %}
+
+
+
+		<div class="form-section">
+
+			<h5>
+				Email: {{ form.email }}
+			</h5>
+
+			This is retrieved from your primary 
+			<a href="https://github.com/settings/emails">
+				verified mail address on Github
+			</a>
+
+		</div>
+
+
+
+
+		<div class="form-section">
+			<h5> Receive OpenSourceHealth emails? </h5>
+			{{ form.receive_news }} 
+		</div>
+
+
+
+
+		<input type="submit" value="Save Settings" />
+	</form>
+</div>
+{% endblock content %}

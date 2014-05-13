@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}	
+<div class="container">
+
+
+
+	<h3>
+		Categories by name 
+		<a href="{% url 'categories.views.by_group' %}" class="parentheses">
+			(show by group)
+		</a>
+	</h3>
+
+
+
+	{% regroup categories by first_letter as categories_by_name %}
+	{% for letter in categories_by_name %}
+
+		<h4 class="letter">
+			{{ letter.grouper }}
+		</h4>
+
+		<ul class="group-items">
+			{% for category in letter.list %}
+				<li class="content">
+					<a href="by_group/#{{ category.group }}">
+						<span class="handle-link">
+							{{ category.group }}
+						</span>
+					</a>
+
+					<a href="{{ category_url }}" class="content">{{ category.name }}
+						<span class="description">
+							{% for p in category.projects %}
+								{{p.name}}
+							{% endfor %}
+						</span>
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	{% endfor %}
+
+
+
+</div>
+{% endblock content %}

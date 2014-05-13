@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<aside>
+	<a href="{% url 'projects.views.edit_project' 'new' %}"> Suggest a new project! </a>
+</aside>
+
+
+
+<div class="container">
+	
+
+
+	<h3 class="top-heading">
+		Projects by name
+	</h3>
+
+
+
+	{% regroup projects by first_letter as projects_by_name %}
+	<div class="btn-group">
+		{% for letter in projects_by_name %}
+			<button class="btn btn-default alpha">
+				<a href="#{{ letter.grouper }}">{{ letter.grouper }}</a>
+			</button>
+		{% endfor %}
+	</div>
+
+
+
+	<div class="container">
+		<br />
+		{% for letter in projects_by_name %}
+
+			<div class="letter" id="{{ letter.grouper }}">
+				{{ letter.grouper }}
+			</div>
+
+			<ul class="group-items">
+				{% for project in letter.list %}
+					<li class="content">
+						{% url 'projects.views.project_detail' project.name as project_url %}
+						<a class="content" href="{{ project_url }}">{{ project.name }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endfor %}
+	</div>
+</div>
+{% endblock content%}

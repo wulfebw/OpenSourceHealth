@@ -1,0 +1,4 @@
+(1) change everything to pk
+(2) change all object lookup to fail gracefully
+(3) proper try except blocks
+(4) redo like all the html and css
