@@ -41,7 +41,7 @@ class ModeratedProjectAdmin(admin.ModelAdmin):
 				if valid_github:
 					proj.existing_project.name = proj.name
 					proj.existing_project.github_repo = proj.github_repo
-					proj.existing_project.category = proj.category
+					proj.existing_project.category = valid_category
 					proj.existing_project.update_project_info()
 					proj.existing_project.save()
 
