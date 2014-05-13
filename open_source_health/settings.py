@@ -115,8 +115,8 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.github.GithubOAuth2',
     'django.contrib.auth.backends.ModelBackend',
   )
-SOCIAL_AUTH_GITHUB_KEY = 'fill in'
-SOCIAL_AUTH_GITHUB_SECRET = 'fill in'
+SOCIAL_AUTH_GITHUB_KEY = 'c7e158382b6aa37d14a9'
+SOCIAL_AUTH_GITHUB_SECRET = '61a4c3bf5ff25c7c8b688c10b5f3badb4d56e9c6'
 TEMPLATE_CONTEXT_PROCESSORS = (
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
