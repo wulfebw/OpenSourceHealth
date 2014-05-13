@@ -2,5 +2,5 @@ from django import forms
 
 class AccountSettingsForm(forms.Form):
 	email = forms.EmailField(max_length=100)
-	receive_news = forms.BooleanField(required=False)
-	receive_news.widget.attrs['class'] = ''
+	receive_email = forms.BooleanField(required=False)
+	receive_email.widget.attrs['class'] = ''
