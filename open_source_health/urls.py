@@ -14,5 +14,5 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('accounts.urls')),
     url(r'^$', 'categories.views.by_group'),
     url('', include('social.apps.django_app.urls', namespace='social')),
-    url(r'^accounts/login/', lambda x: redirect('accounts/login/')),
+    url(r'^accounts/login/', lambda x: redirect('login/Github/')),
 )
