@@ -16,5 +16,5 @@ urlpatterns = patterns('',
     url('', include('social.apps.django_app.urls', namespace='social')),
 
     # hack on python social to ignore "next" parameters. I'm not sure how it handles it internally, so this will work for now.
-    url(r'^accounts/login/', lambda x: redirect('/login/Github/')),
+    url(r'^accounts/login/', lambda x: redirect('/login/github/')),
 )
