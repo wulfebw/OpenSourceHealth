@@ -20,8 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'b%&%wu@a!q^$7n_qw3^_zzss39en_ingo_66e-dnmcyizu!u+d'
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -66,6 +64,11 @@ WSGI_APPLICATION = 'open_source_health.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': 'osh_db',
+        # 'USER': 'wulfe',
+        # 'PASSWORD': 'iceo',
+        # 'HOST': 'localhost',
+        # 'PORT': '',
     }
 }
 
