@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<div class="form-container">
+	<form action="" method="post" class="project-form">{% csrf_token %}
+
+		<div class="form-section">
+			<h5>Category Name</h5>
+			{{ form.name }}
+		</div>
+
+		<div class="form-section">
+			<h5>Group Name</h5>
+			{{ form.group }}
+		</div>
+
+		<input type="submit" value="Submit" />
+
+	</form>
+</div>
+
+
+
+{% endblock content%}

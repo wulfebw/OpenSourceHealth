@@ -26,6 +26,9 @@ class Project(models.Model):
 	category = models.ForeignKey(Category, blank = True, null = True)
 	rating = models.DecimalField(max_digits = 5, decimal_places = 2, blank = True, null = True)
 	description = models.TextField(blank = True, null = True)	
+
+	# activity_level: 1 = most active, 3 = least active
+	# 1 = avg time of last n commits < 1 month, 2 = 3 months, 3 = 6 months
 	activity_level = models.IntegerField(blank = True, null = True)
 
 	def __unicode__(self):
@@ -165,9 +168,7 @@ class GitHubProject(Project):
 		Updates the project rating
 		"""
 
-		score = self.github_watchers + self.github_forks
-		top_score = 1000 # placeholder: this depends on the projects on the site
-		self.rating = float(score) / top_score
+		pass
 
 
 	def update_project_info(self):
@@ -201,7 +202,7 @@ class BitBucketProject(Project):
 
 	def extract_bitbucket_repo(self):
 		"""
-		Extracts the bitbucket repo name by finding the ".org" in the name and assuming the next two words seperated by forward slashes are the repo identifying values
+		Extracts the bitbucket repo name by finding the ".org" in the name and assuming the next two words seperated by forward slashes are the repo-identifying values
 		"""
 
 		try:
@@ -230,8 +231,6 @@ class BitBucketProject(Project):
 			self.name = data[u'name']
 			self.description = data[u'description']
 		self.save()
-
-
 
 
 	def update_forks_followers(self, data):
@@ -280,7 +279,14 @@ class BitBucketProject(Project):
 			if r.ok:
 				data = r.json()
 				avg_time_of_last_n_commits = get_avg_time_of_last_n_commits(data, NUM_COMMITS_USED_FOR_ACTIVITY_LEVEL)
-		pass
+				if avg_time_of_last_n_commits > 180:
+					self.activity = 3
+				elif avg_time_of_last_n_commits > 90:
+					self.activity = 2
+				else:
+					self.activity = 1
+		except Exception as e:
+			logger.info(e)
 
 
 	def update_rating(self, data):
