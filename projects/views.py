@@ -103,6 +103,11 @@ def edit_project(request, project_name):
 		'form': form,
 		})
 
+@login_required
+def create_project(request, homepage):
+	
+
+
 
 
 

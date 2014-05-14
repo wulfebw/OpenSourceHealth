@@ -8,24 +8,9 @@
 	<form action="" method="post" class="project-form">{% csrf_token %}
 
 		<div class="form-section">
-			<h5>Project Name</h5>
+			<h5>Project Homepage</h5>
 			{{ form.name }}
-		</div>
-
-		<div class="form-section">
-			<h5>Github Repository</h5>
-			{{ form.github_repo }}
-			<p>Must be a valid github repository: "user/repo_name" </p>
-		</div>
-
-		<div class="form-section">
-			<h5>Category</h5>
-			{{ form.category }}
-		</div>
-
-		<div>
-			<h5>Modification Comments</h5>
-			{{ form.comments }}
+			(e.g., github, bitbucket, or sourceforge repository page)
 		</div>
 
 		<input type="submit" value="Submit" />
