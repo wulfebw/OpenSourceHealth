@@ -66,7 +66,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         # 'NAME': 'osh_db',
         # 'USER': 'wulfe',
-        # 'PASSWORD': 'iceo',
+        # 'PASSWORD': '',
         # 'HOST': 'localhost',
         # 'PORT': '',
     }
